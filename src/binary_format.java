@@ -6,7 +6,7 @@ public class binary_format {
         Stack<Integer> st = new Stack<>();
         Scanner input=new Scanner(System.in);
         int n=input.nextInt();
-        method_1(n,st);
+        method_2(n,st);
         while(!st.isEmpty()){
             System.out.print(st.pop());
         }
@@ -17,6 +17,14 @@ public class binary_format {
             int curr=mask&n;
             st.push(curr);
             n>>=1;
+        }
+    }
+
+    static void method_2(int n,Stack<Integer> st){
+        while(n>0){
+            int curr=n%2;
+            st.push(curr);
+            n/=2;
         }
     }
 }
