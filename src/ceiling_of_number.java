@@ -28,6 +28,6 @@ public class ceiling_of_number {
             }
         }
         return arr[start];//for finding the floor of a number return end
-        
+
     }
 }
