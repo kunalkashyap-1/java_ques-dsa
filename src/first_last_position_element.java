@@ -1,5 +1,3 @@
-import java.util.ArrayList;
-
 public class first_last_position_element {
     public static void main(String[] args){
     int[] nums={5,7,7,8,8,8,10};
