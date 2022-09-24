@@ -24,9 +24,8 @@ public class order_agnostic_binary_search {
             int mid=first+(last-first)/2;
             if(arr[mid]==target){
                 return true;
-
             }
-            if (is_asc){
+            else if (is_asc){
                 if (arr[mid]>target) {
                     last=mid-1;
                 }
