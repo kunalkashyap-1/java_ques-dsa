@@ -1,7 +1,7 @@
-public class rotated_binary_search {
-    public static void main(String[] args) {
-        int[] nums = {4,5,6,7,0,1,2};
-        int target=0;
+public class rbs_for_duplicate_vals {
+    public static void main(String[] args){
+        int[] nums = {2,9,2,2,2};
+        int target=2;
         System.out.println(search(nums,target));
     }
 
@@ -16,11 +16,27 @@ public class rotated_binary_search {
             if(mid>start && nums[mid]<nums[mid-1]){
                 return mid-1;
             }
-            if(nums[mid]<=nums[start]){
-                end=mid-1;
+//            if(nums[mid]<=nums[start]){
+//                end=mid-1;
+//            }
+//            else{
+//                start=mid+1;
+//            }
+            if(nums[mid]==nums[start] && nums[mid]==nums[end]){
+                if(nums[start]>nums[start+1]){
+                    return start;
+                }
+                start++;
+                if(nums[end]<nums[end-1]){
+                    return end-1;
+                }
+                end--;
+            }
+            else if(nums[start]<nums[mid] || (nums[start]==nums[mid] &&nums[mid]>nums[end])){
+                start=mid+1;
             }
             else{
-                start=mid+1;
+                end=mid-1;
             }
 
         }
@@ -58,4 +74,4 @@ public class rotated_binary_search {
         }
         return -1;
     }
-    }
+}
