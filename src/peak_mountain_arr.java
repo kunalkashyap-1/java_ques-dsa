@@ -1,7 +1,7 @@
 public class peak_mountain_arr {
     //bitonic array
     public static void main(String[] args){
-        int[] arr={0,3,10,5,2};
+        int[] arr={0,3,10,11,7,6,5,2};
         System.out.print(bin_sear(arr));
     }
 

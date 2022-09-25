@@ -1,6 +1,6 @@
 public class search_in_bitonic_array {
     public static void main(String[] args) {
-        int[] arr={1,3,4,5,3,2,1};
+        int[] arr={1,2,3,4,5,6,9,3,2,1};
         int target=2;
         int peak=peak_el(arr);
         int found=bin_sear(arr,target,0,peak);

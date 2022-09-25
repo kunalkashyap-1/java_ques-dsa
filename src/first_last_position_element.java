@@ -1,7 +1,7 @@
 public class first_last_position_element {
     public static void main(String[] args){
     int[] nums={5,7,7,8,8,8,10};
-    int target=8;
+    int target=7;
     for (int el : pos_search(nums,target)){
         System.out.print(el+" ");
     }
