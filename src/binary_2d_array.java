@@ -1,3 +1,5 @@
+import java.util.Arrays;
+
 public class binary_2d_array {
     public static void main(String[] args) {
         int[][] matrix={
@@ -6,9 +8,7 @@ public class binary_2d_array {
                 {28,29,37,49},
                 {33,34,38,50}
         };
-        for(int el:search(matrix,50)){
-            System.out.print(el+" ");
-        }
+        System.out.println(Arrays.toString(search(matrix,49)));
     }
 
     static int[] search(int[][] matrix,int target){
