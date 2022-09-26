@@ -6,7 +6,7 @@ public class binary_2d_array {
                 {28,29,37,49},
                 {33,34,38,50}
         };
-        for(int el:search(matrix,38)){
+        for(int el:search(matrix,50)){
             System.out.print(el+" ");
         }
     }
