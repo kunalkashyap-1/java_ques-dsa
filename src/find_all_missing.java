@@ -32,5 +32,6 @@ class find_all_missing {
         int temp=arr[first];
         arr[first]=arr[last];
         arr[last]=temp;
+        System.out.println(Arrays.toString(arr));
     }
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class find_all_duplicate {
     public static void main(String[] args) {
-        int[] nums={4,3,2,7,8,2,3,1};
+        int[] nums={4,3,2,7,8,2,8,3,1};
         cyclic(nums);
         List<Integer> ans= new ArrayList<>();
         for (int i = 0; i < nums.length; i++) {
