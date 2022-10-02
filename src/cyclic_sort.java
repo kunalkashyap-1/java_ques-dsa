@@ -3,7 +3,7 @@ import java.util.Arrays;
 public class cyclic_sort {
     public static void main(String[] args){
         //when given numbers from range 1 to n , use cyclic sort
-        int[] arr={9,8,7,6,5,4,3,2,1};
+        int[] arr={9,7,8,5,4,6,2,3,1};
         cyclic(arr);
         System.out.println(Arrays.toString(arr));
     }
