@@ -1,8 +1,9 @@
 public class pattern {
     public static void main(String[] args) {
-//        pattern1(7);
-//        pattern2(7);
-//        pattern3(5);
+        pattern1(7);
+        System.out.println();
+        pattern2(7);
+        pattern3(5);
         pattern4(5);
     }
 
