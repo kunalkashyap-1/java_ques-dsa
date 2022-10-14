@@ -6,7 +6,7 @@ public class binary_format {
         Stack<Integer> st = new Stack<>();
         Scanner input=new Scanner(System.in);
         int n=input.nextInt();
-        method_2(n,st);
+        method_1(n,st);
         while(!st.isEmpty()){
             System.out.print(st.pop());
         }
