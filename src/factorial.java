@@ -1,6 +1,6 @@
 public class factorial {
     public static void main(String[] args){
-        System.out.println(fact(5));
+        System.out.println(fact(35));
     }
 
     static long fact(int n){
