@@ -10,6 +10,7 @@ public class linear_2d_array {
         System.out.println("enter target to be searched");
         Scanner input= new Scanner(System.in);
         int target=input.nextInt();
+        input.close();
         System.out.println(linear_search_2d(arr,target));
     }
 
