@@ -1,4 +1,4 @@
-package DSA_sheet;
+package DSA_sheet.arrays;
 //
 //public class reverse_string {
 //    class Solution {

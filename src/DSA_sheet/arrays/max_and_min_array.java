@@ -1,4 +1,4 @@
-package DSA_sheet;
+package DSA_sheet.arrays;
 import java.util.*;
 
 public class max_and_min_array {
