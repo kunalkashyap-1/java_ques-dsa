@@ -7,20 +7,18 @@ public class max_and_min_array {
         System.out.println(Arrays.toString(min_max(arr)));
     }
     static int[] min_max(int[] arr){
-        int[] res={0,0};
+        int[] res = {0,0};
         if(arr.length == 1){
-            res[0]=arr[0];
-            res[1]=arr[0];
-            return res ;
+            return new int[] {arr[0], arr[0]} ;
         }
-            if(arr[0]>arr[1]){
-                res[0]=arr[1];
-                res[1]=arr[0];
-            }
-            else{
-                res[1]=arr[1];
-                res[0]=arr[0];
-            }
+        if(arr[0]>arr[1]){
+            res[0]=arr[1];
+            res[1]=arr[0];
+        }
+        else{
+            res[1]=arr[1];
+            res[0]=arr[0];
+        }
 
         for(int i=2;i<arr.length;i++ ){
             if(arr[i]>res[1]){
