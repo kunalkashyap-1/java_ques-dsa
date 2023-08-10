@@ -10,6 +10,7 @@ public class permutaion_in_string {
     static boolean check(String s1, String s2){
         if(s1.length() > s2.length()) return false;
 
+        //make two hashmaps one for storing the characters and their frequency
         HashMap<Character, Integer> str1Freq = createHashMap(s1);
         HashMap<Character, Integer> windowFreq = createHashMap(s2.substring(0,s1.length()));
 
@@ -28,6 +29,7 @@ public class permutaion_in_string {
         return str1Freq.equals(windowFreq);
     }
 
+    //
     static HashMap<Character, Integer> createHashMap(String s){
         HashMap<Character,Integer> charFreq = new HashMap<>();
         for (char c: s.toCharArray()){
