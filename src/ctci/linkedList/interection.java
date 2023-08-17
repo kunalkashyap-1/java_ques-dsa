@@ -1,9 +1,10 @@
 package ctci.linkedList;
+
 import java.lang.*;
 
 public class interection {
     public static void main(String[] args) {
-        int[] listA = {1,9,1,2,4}, listB = {3,2,4};
+        int[] listA = {1, 9, 1, 2, 4}, listB = {3, 2, 4};
         ListNode list1 = arrToList(listA);
         ListNode list2 = arrToList(listB);
         printList(list1);
@@ -11,7 +12,8 @@ public class interection {
         ListNode res = check(list1, list2);
         System.out.println(res.val);
     }
-    static ListNode check (ListNode headA, ListNode headB){
+
+    static ListNode check(ListNode headA, ListNode headB) {
         ListNode p1 = headA;
         ListNode p2 = headB;
         int lenA = 0;
@@ -41,32 +43,32 @@ public class interection {
                 p2 = p2.next;
             }
         }
-        while(p1 != null && p2 != null){
-            if(p1 == p2){
+        while (p1 != null && p2 != null) {
+            if (p1 == p2) {
                 return p1;
             }
-            p1= p1.next;
+            p1 = p1.next;
             p2 = p2.next;
         }
         return null;
     }
 
-    static void insert(ListNode head, int val){
+    static void insert(ListNode head, int val) {
         ListNode newNode = new ListNode(val);
-        if(head == null){
+        if (head == null) {
             head = newNode;
-        }else{
+        } else {
             ListNode curr = head;
-            while(curr.next != null){
+            while (curr.next != null) {
                 curr = curr.next;
             }
             curr.next = newNode;
         }
     }
 
-    static void printList(ListNode head){
+    static void printList(ListNode head) {
         ListNode curr = head;
-        while(curr != null){
+        while (curr != null) {
             System.out.print(curr.val + " ");
             curr = curr.next;
         }
@@ -74,10 +76,10 @@ public class interection {
     }
 
 
-    static ListNode arrToList(int[] arr){
+    static ListNode arrToList(int[] arr) {
         ListNode head = new ListNode(arr[0]);
-        for(int i =1; i<arr.length ; i++){
-            insert(head,arr[i]);
+        for (int i = 1; i < arr.length; i++) {
+            insert(head, arr[i]);
         }
         return head;
     }

@@ -2,9 +2,9 @@ package ctci.linkedList;
 
 public class isCycle_index {
     public static void main(String[] args) {
-        ListNode list = arrToList(new int[] {3,2,0,-4});
+        ListNode list = arrToList(new int[]{3, 2, 0, -4});
         ListNode curr = list;
-        while (curr.next != null){
+        while (curr.next != null) {
             curr = curr.next;
         }
         printList(list);
@@ -13,7 +13,7 @@ public class isCycle_index {
     }
 
     static ListNode detectCycle(ListNode head) {
-        if(head == null || head.next == null ){
+        if (head == null || head.next == null) {
             return null;
         }
         ListNode slow = head;
@@ -42,22 +42,22 @@ public class isCycle_index {
         return slow;  // Starting node of the cycle
     }
 
-    static void insert(ListNode head, int val){
+    static void insert(ListNode head, int val) {
         ListNode newNode = new ListNode(val);
-        if(head == null){
+        if (head == null) {
             head = newNode;
-        }else{
+        } else {
             ListNode curr = head;
-            while(curr.next != null){
+            while (curr.next != null) {
                 curr = curr.next;
             }
             curr.next = newNode;
         }
     }
 
-    static void printList(ListNode head){
+    static void printList(ListNode head) {
         ListNode curr = head;
-        while(curr != null){
+        while (curr != null) {
             System.out.print(curr.val + " ");
             curr = curr.next;
         }
@@ -65,10 +65,10 @@ public class isCycle_index {
     }
 
 
-    static ListNode arrToList(int[] arr){
+    static ListNode arrToList(int[] arr) {
         ListNode head = new ListNode(arr[0]);
-        for(int i =1; i<arr.length ; i++){
-            insert(head,arr[i]);
+        for (int i = 1; i < arr.length; i++) {
+            insert(head, arr[i]);
         }
         return head;
     }

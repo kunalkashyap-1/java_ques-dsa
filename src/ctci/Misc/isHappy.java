@@ -1,4 +1,4 @@
-package ctci.others;
+package ctci.Misc;
 
 public class isHappy {
     public static void main(String[] args) {
