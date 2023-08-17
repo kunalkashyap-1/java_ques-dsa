@@ -99,7 +99,7 @@ class DynamicStack<T> {
     public void resizeArray(int newSize){
         //noinspection unchecked
         T[] temp = (T[]) new Object[newSize];
-        System.arraycopy(arr, 0, temp, 0, arr.length);
+        System.arraycopy(arr, 0, temp, 0, size);
         arr = temp;
     }
 }
