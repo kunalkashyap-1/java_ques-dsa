@@ -14,7 +14,7 @@ class MyQueue<T> {
         }
     }
 
-    private static int size = 0;
+    private int size = 0; // Removed 'static' modifier
     private QueueNode<T> front;
     private QueueNode<T> rear;
 
@@ -58,96 +58,102 @@ class MyQueue<T> {
 
 class MyArrQueue<T> {
     private T[] arr;
-    private static int size, front =-1, rear=-1;
+    private int size, front = -1, rear = -1; // Removed 'static' modifier
     private static final int DEFAULT_SIZE = 10;
 
-    public MyArrQueue(){
+    public MyArrQueue() {
         arr = (T[]) new Object[DEFAULT_SIZE];
-        size =0;
+        size = 0;
     }
-    public MyArrQueue(T data){
+
+    public MyArrQueue(T data) {
         arr = (T[]) new Object[DEFAULT_SIZE];
         front = rear = 0;
         arr[rear] = data;
-        size =1;
+        size = 1;
     }
 
-    public boolean enqueue(T data){
-        if(size == arr.length){
-            resizeArray(arr.length*2);
+    public boolean enqueue(T data) {
+        if (size == arr.length) {
+            resizeArray(arr.length * 2);
         }
-        if(front == -1 && rear == -1){
+        if (front == -1 && rear == -1) {
             front = rear = 0;
         }
         arr[rear] = data;
-        rear++;
+        rear = (rear + 1) % arr.length; // Update rear correctly
+        size++;
         return true;
     }
 
-    public T dequeue(){
-        if(front == rear) throw new NoSuchElementException();
+    public T dequeue() {
+        if (front == rear) throw new NoSuchElementException();
         T data = arr[front];
         arr[front++] = null;
         size--;
-        if(size >0 && size < arr.length/4){
-            resizeArray(arr.length/2);
+        if (size > 0 && size <= arr.length / 4) { // Adjust condition
+            resizeArray(arr.length / 2);
         }
         return data;
     }
 
-    public T peek(){
-        if(front == -1)throw new NoSuchElementException();
+    public T peek() {
+        if (front == -1) throw new NoSuchElementException();
         return arr[front];
     }
-    public boolean isEmpty(){
-        return front == -1;
+
+    public boolean isEmpty() {
+        return size == 0;
     }
-    public int size(){
+
+    public int size() {
         return size;
     }
-    public void resizeArray(int newSize){
+
+    public void resizeArray(int newSize) {
         T[] temp = (T[]) new Object[newSize];
-        System.arraycopy(arr,0,temp,0,size);
+        System.arraycopy(arr, 0, temp, 0, size);
         arr = temp;
     }
 }
 
-class MyCircularQueue<T>{
-    private static int size;
-    private class circularNode<T>{
-        T data;
-        circularNode next;
+class MyCircularQueue<T> {
+    private int size; // Removed 'static' modifier
 
-        public circularNode(){};
-        public circularNode(T data){
+    private class CircularNode<T> {
+        T data;
+        CircularNode next;
+
+        public CircularNode(T data) {
             this.data = data;
         }
     }
 
-    private circularNode<T> front;
-    private circularNode<T> rear;
+    private CircularNode<T> front;
+    private CircularNode<T> rear;
 
-    public boolean enqueue(T data){
-        circularNode<T> t = new circularNode<>(data);
-        if(front == null && rear == null){
+    public boolean enqueue(T data) {
+        CircularNode<T> t = new CircularNode<>(data);
+        if (front == null && rear == null) {
             front = rear = t;
             rear.next = front;
-        }else{
+        } else {
             rear.next = t;
-            rear =t;
+            rear = t;
             rear.next = front;
         }
         size++;
         return true;
     }
 
-    public T dequeue(){
-        T data = front.data;
-        if(front == null){
+    public T dequeue() {
+        if (front == null) {
             throw new NoSuchElementException();
-        } else if (front == rear) {
+        }
+        T data = front.data;
+        if (front == rear) {
             front = rear = null;
-        }else{
+        } else {
             front = front.next;
             rear.next = front;
         }
@@ -155,16 +161,16 @@ class MyCircularQueue<T>{
         return data;
     }
 
-    public T peek(){
-        if(front == null) throw new NoSuchElementException();
+    public T peek() {
+        if (front == null) throw new NoSuchElementException();
         return front.data;
     }
 
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return front == null;
     }
 
-    public int size(){
+    public int size() {
         return size;
     }
 }
@@ -172,78 +178,220 @@ class MyCircularQueue<T>{
 class MyCircularArrQueue<T> {
     private static final int DEFAULT_SIZE = 10;
     private T[] arr;
-    private int size, front = -1, rear =-1;
+    private int size, front = -1, rear = -1;
 
-    public MyCircularArrQueue(){
+    public MyCircularArrQueue() {
         arr = (T[]) new Object[DEFAULT_SIZE];
-        size =0;
+        size = 0;
     }
 
-    public MyCircularArrQueue(T data){
+    public MyCircularArrQueue(T data) {
         arr = (T[]) new Object[DEFAULT_SIZE];
-        size=0;
-        front = rear= 0;
+        size = 0;
+        front = rear = 0;
         arr[rear] = data;
     }
 
-    public boolean enqueue(T data){
-        if(front == -1 && rear == -1){
+    public boolean enqueue(T data) {
+        if (front == -1 && rear == -1) {
             front = rear = 0;
             arr[rear] = data;
-        }else if((rear+1)% arr.length == front){
+        } else if ((rear + 1) % arr.length == front) {
             throw new BufferOverflowException();
-        }else{
-            rear = (rear+1)% arr.length;
+        } else {
+            rear = (rear + 1) % arr.length;
             arr[rear] = data;
         }
         size++;
         return true;
     }
 
-    public T dequeue(){
-        if(front == -1 && rear == -1){
+    public T dequeue() {
+        T data = null;
+        if (front == -1 && rear == -1) {
             throw new BufferUnderflowException();
         } else if (front == rear) {
+            data = arr[front];
             front = rear = -1;
             size--;
-        }else{
-            T data = arr[front];
+            return data;
+        } else {
+            data = arr[front];
             arr[front] = null;
-            front = (front+1)%arr.length;
+            front = (front + 1) % arr.length;
             size--;
             return data;
         }
-        return null;
     }
 
-    public T peek(){
-        if(front == -1)throw new NoSuchElementException();
+    public T peek() {
+        if (front == -1) throw new NoSuchElementException();
         return arr[front];
     }
-    public boolean isEmpty(){
+
+    public boolean isEmpty() {
         return front == -1;
     }
-    public int size(){
+
+    public int size() {
         return size;
     }
 }
-//class MyPriorityQueue {
-//    //DO THIS LATER
-//}
 
-class MyDeque<T>{
-    private T[] arr;
+class MyDeque<T> {
+    private class DequeNode<T> {
+        private T data;
+        private DequeNode<T> prev;
+        private DequeNode<T> next;
 
-    public MyDeque(int size){
-        arr = (T[]) new Object[size];
+        public DequeNode(T data) {
+            this.data = data;
+            this.prev = null;
+            this.next = null;
+        }
     }
 
-    public MyDeque(T data, int size){};
+    private DequeNode<T> front;
+    private DequeNode<T> rear;
 
+    public boolean isEmpty() {
+        return front == null;
+    }
+
+    public boolean addToFront(T data) {
+        DequeNode<T> temp = new DequeNode<>(data);
+        if (isEmpty()) {
+            front = rear = temp;
+        } else {
+            temp.next = front;
+            front.prev = temp;
+            front = temp;
+        }
+        return true;
+    }
+
+    public boolean addToRear(T data) {
+        DequeNode<T> temp = new DequeNode<>(data);
+        if (isEmpty()) {
+            front = rear = temp;
+        } else {
+            temp.prev = rear;
+            rear.next = temp;
+            rear = temp;
+        }
+        return true;
+    }
+
+    public T removeFromFront() {
+        if (isEmpty()) throw new NoSuchElementException();
+        T data = front.data;
+        if (front == rear) {
+            front = null;
+            rear = null;
+        } else {
+            front = front.next;
+            front.prev = null;
+        }
+        return data;
+    }
+
+    public T removeFromRear() {
+        if (isEmpty()) throw new NoSuchElementException();
+        T data = rear.data;
+        if (front == rear) {
+            front = rear = null;
+        } else {
+            rear = rear.prev;
+            rear.next = null;
+        }
+        return data;
+    }
+
+    public T peekFront() {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        return front.data;
+    }
+
+    public T peekRear() {
+        if (isEmpty()) {
+            throw new NoSuchElementException();
+        }
+        return rear.data;
+    }
 }
 
 public class Queue {
     public static void main(String[] args) {
+        testMyQueue();
+        testMyArrQueue();
+        testMyCircularQueue();
+        testMyCircularArrQueue();
+        testMyDeque();
+    }
 
+    public static void testMyQueue() {
+        MyQueue<Integer> queue = new MyQueue<>();
+        queue.add(10);
+        queue.add(20);
+        queue.add(30);
+
+        System.out.println("MyQueue:");
+        while (!queue.isEmpty()) {
+            System.out.println(queue.remove());
+        }
+    }
+
+    public static void testMyArrQueue() {
+        MyArrQueue<String> arrQueue = new MyArrQueue<>();
+        arrQueue.enqueue("A");
+        arrQueue.enqueue("B");
+        arrQueue.enqueue("C");
+
+        System.out.println("\nMyArrQueue:");
+        while (!arrQueue.isEmpty()) {
+            System.out.println(arrQueue.dequeue());
+        }
+    }
+
+    public static void testMyCircularQueue() {
+        MyCircularQueue<Character> circularQueue = new MyCircularQueue<>();
+        circularQueue.enqueue('X');
+        circularQueue.enqueue('Y');
+        circularQueue.enqueue('Z');
+
+        System.out.println("\nMyCircularQueue:");
+        while (!circularQueue.isEmpty()) {
+            System.out.println(circularQueue.dequeue());
+        }
+    }
+
+    public static void testMyCircularArrQueue() {
+        MyCircularArrQueue<Double> circularArrQueue = new MyCircularArrQueue<>();
+        circularArrQueue.enqueue(1.1);
+        circularArrQueue.enqueue(2.2);
+        circularArrQueue.enqueue(3.3);
+
+        System.out.println("\nMyCircularArrQueue:");
+        while (!circularArrQueue.isEmpty()) {
+            System.out.println(circularArrQueue.dequeue());
+        }
+    }
+
+    public static void testMyDeque() {
+        MyDeque<String> deque = new MyDeque<>();
+        deque.addToFront("Front1");
+        deque.addToRear("Rear1");
+        deque.addToFront("Front2");
+        deque.addToRear("Rear2");
+
+        System.out.println("\nMyDeque:");
+        System.out.println(deque.peekFront());
+        System.out.println(deque.peekRear());
+
+        while (!deque.isEmpty()) {
+            System.out.println(deque.removeFromFront());
+        }
     }
 }
