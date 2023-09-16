@@ -7,15 +7,11 @@ import java.util.Stack;
 public class reverseQueueKEL {
     public static void main(String[] args) {
         Queue<Integer> q = new LinkedList<>();
-        q.offer(1);
-        q.offer(2);
-        q.offer(3);
-        q.offer(4);
-        q.offer(5);
-        q.offer(6);
-        q.offer(7);
-        q.offer(8);
-        reverseQueueK(q,5);
+        for (int i = 1; i < 11; i++) {
+            q.offer(i);
+        }
+        int k = 5;
+        reverseQueueK(q,k);
         System.out.println(q);
     }
     static void reverseQueueK(Queue<Integer> q,int k){
