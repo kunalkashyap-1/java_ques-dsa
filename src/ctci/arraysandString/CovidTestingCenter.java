@@ -19,7 +19,7 @@ public class CovidTestingCenter {
             int count = 1;
             int currentRoom = rooms[0];
 
-            // Try to set up rooms with at least the mid distance
+            // Try to set up rooms with at least the mid-distance
             for (int room : rooms) {
                 if (room - currentRoom >= mid) {
                     count++;
