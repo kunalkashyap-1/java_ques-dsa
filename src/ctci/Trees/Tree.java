@@ -6,9 +6,9 @@ import java.util.Queue;
 import java.util.Stack;
 
 class TreeNode {
-    private int val;
-    private TreeNode left;
-    private TreeNode right;
+    int val;
+    TreeNode left;
+    TreeNode right;
 
     //    private TreeNode root;
     private int height = 0;
