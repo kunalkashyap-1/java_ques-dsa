@@ -1,45 +1,49 @@
 package ctci.graph;
 
-import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Map;
-import java.util.Queue;
+import java.util.*;
 
-class Graph {
-    private Map<Integer, LinkedList<Integer>> adjacencyList;
+class Graph<T> {
+    private final Map<T, LinkedList<T>> adjacencyList;
+    private final ArrayList<T> nodes = new ArrayList<>();
 
     public Graph() {
         adjacencyList = new HashMap<>();
     }
 
-    public void addEdge(int source, int destination) {
+    public void addEdge(T source, T destination) {
         if (!adjacencyList.containsKey(source)) {
             adjacencyList.put(source, new LinkedList<>());
+            nodes.add(source);
         }
         adjacencyList.get(source).add(destination);
     }
 
-    public boolean hasRouteBFS(int source, int destination) {
+    public ArrayList<T> getNodes(){return nodes;}
+
+    public LinkedList<T> getNeighbors(T node){
+        return adjacencyList.get(node);
+    }
+    public boolean hasRouteBFS(T source, T destination) {
         if (!adjacencyList.containsKey(source) || !adjacencyList.containsKey(destination)) {
             return false;
         }
 
-        Queue<Integer> queue = new LinkedList<>();
-        boolean[] visited = new boolean[adjacencyList.size() + 3];
-
+        Queue<T> queue = new LinkedList<>();
+        boolean[] visited = new boolean[1000];
+//remove T with ints had to change it
         queue.add(source);
         while (!queue.isEmpty()) {
-            int current = queue.poll();
-            visited[current] = true;
+            T current = queue.poll();
+            visited[(int)current] = true;
 
             if (current == destination) {
                 return true;
             }
 
-            LinkedList<Integer> neighbours = adjacencyList.get(current);
+            LinkedList<T> neighbours = adjacencyList.get(current);
             if (neighbours != null) {
-                for (int neighbour : neighbours) {
-                    if (!visited[neighbour]) {
+                for (T neighbour : neighbours) {
+                    if (!visited[(int)neighbour]) {
                         queue.add(neighbour);
                     }
                 }
@@ -51,7 +55,7 @@ class Graph {
 
 public class RouteBetweenNodes {
     public static void main(String[] args) {
-        Graph g = new Graph();
+        Graph<Integer> g = new Graph<>();
         g.addEdge(1, 2);
         g.addEdge(1, 4);
         g.addEdge(1, 5);

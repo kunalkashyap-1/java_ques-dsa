@@ -4,7 +4,8 @@ public class inOrderSuccessor {
     public static void main(String[] args) {
         Integer[] arr = {4, 2, 6, 1, 3, 5, 7};
         TreeNode node = ArrToTree(arr, 0);
-        System.out.println(successor(node, 3));
+        System.out.println(predecessor(node, 4));
+        System.out.println(successor(node, 4));
     }
 
     // Helper method to convert an array to a binary tree
@@ -29,6 +30,19 @@ public class inOrderSuccessor {
             } else {
                 res = root.val;
                 root = root.left;
+            }
+        }
+        return res;
+    }
+
+    static Integer predecessor(TreeNode root, int target) {
+        Integer res = null;
+        while (root != null) {
+            if (root.val >= target) {
+                root = root.left;
+            } else {
+                res = root.val;
+                root = root.right;
             }
         }
         return res;
